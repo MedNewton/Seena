@@ -105,22 +105,40 @@ const SeenaCircles: React.FC<SeenaCirclesProps> = ({
           <Button
             sx={{
               mt: { xs: 2, md: 3 },
-              borderRadius: 999,
-              px: 5,
+              position: "relative",
+              overflow: "hidden",
+              borderRadius: 2,
+              minWidth: { xs: 170, md: 190 },
+              px: 0,
               py: 1.6,
               fontSize: 14,
               textTransform: "uppercase",
               letterSpacing: 1.4,
+              fontWeight: 600,
               color: "#FFFFFF",
-              borderColor: "#FFFFFF",
               borderWidth: 1.5,
               borderStyle: "solid",
-              backgroundColor: "rgba(15,23,42,0.25)",
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)",
+              borderColor: "rgba(255,255,255,0.9)",
+              backgroundColor: "transparent",
+              boxShadow: "none",
+              zIndex: 0,
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                inset: 0,
+                backgroundColor: "#F9733C",
+                borderRadius: 1,
+                transform: "translateY(100%)",
+                transformOrigin: "bottom center",
+                transition:
+                  "transform 260ms cubic-bezier(0.22, 1, 0.36, 1)",
+                zIndex: -1,
+              },
+              "&:hover::before": {
+                transform: "translateY(0%)",
+              },
               "&:hover": {
-                backgroundColor: "rgba(255,255,255,0.10)",
-                borderColor: "#FFFFFF",
+                borderColor: "transparent",
               },
             }}
           >

@@ -30,8 +30,8 @@ const BranchCard: React.FC<BranchCardProps> = ({
         borderRadius: 4,
         overflow: "hidden",
         minHeight: isTall
-          ? { xs: 260, md: 320 } // taller on desktop for top cards
-          : { xs: 260, md: 260 }, // default for bottom card
+          ? { xs: 260, md: 320 }
+          : { xs: 260, md: 260 },
         color: "#FFFFFF",
         cursor: "pointer",
         boxShadow: "0px 24px 60px rgba(15, 23, 42, 0.40)",
@@ -118,22 +118,41 @@ const BranchCard: React.FC<BranchCardProps> = ({
 
         <Button
           sx={{
+            position: "relative",
+            overflow: "hidden",
             alignSelf: "flex-start",
             mt: { xs: 3, md: 4 },
-            borderRadius: 999,
-            px: 4,
+            borderRadius: 2,
+            minWidth: { xs: 140, md: 170 },
+            px: 0,
             py: 1.2,
             fontSize: 14,
             textTransform: "uppercase",
             letterSpacing: 1,
+            fontWeight: 600,
             color: "#FFFFFF",
-            borderColor: "#FFFFFF",
             borderWidth: 1.5,
             borderStyle: "solid",
+            borderColor: "rgba(255,255,255,0.9)",
             backgroundColor: "transparent",
+            boxShadow: "none",
+            zIndex: 0,
+            "&::before": {
+              content: '""',
+              position: "absolute",
+              inset: 0,
+              backgroundColor: "#F9733C",
+              borderRadius: 1,
+              transform: "translateY(100%)",
+              transformOrigin: "bottom center",
+              transition: "transform 260ms cubic-bezier(0.22, 1, 0.36, 1)",
+              zIndex: -1,
+            },
+            "&:hover::before": {
+              transform: "translateY(0%)",
+            },
             "&:hover": {
-              backgroundColor: "rgba(255,255,255,0.08)",
-              borderColor: "#FFFFFF",
+              borderColor: "transparent",
             },
           }}
         >

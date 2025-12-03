@@ -107,24 +107,43 @@ const ExploreSection: React.FC = () => {
               </Typography>
 
               <Button
-                variant="outlined"
                 sx={{
+                  position: "relative",
+                  overflow: "hidden",
                   alignSelf: "flex-start",
                   mt: 1,
-                  px: 4,
+                  borderRadius: 2,
+                  minWidth: { xs: 140, md: 170 },
+                  px: 0,
                   py: 1.2,
-                  borderRadius: 999,
-                  borderWidth: 2,
-                  borderColor: "rgba(255,255,255,0.9)",
-                  color: "#FFFFFF",
                   fontSize: { xs: 13, md: 14 },
+                  fontWeight: 600,
                   letterSpacing: 1,
                   textTransform: "uppercase",
-                  fontWeight: 500,
+                  color: "#FFFFFF",
+                  borderWidth: 1.5,
+                  borderStyle: "solid",
+                  borderColor: "rgba(255,255,255,0.9)",
                   backgroundColor: "transparent",
+                  boxShadow: "none",
+                  zIndex: 0,
+                  "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    inset: 0,
+                    backgroundColor: "#F9733C",
+                    borderRadius: 1,
+                    transform: "translateY(100%)",
+                    transformOrigin: "bottom center",
+                    transition:
+                      "transform 260ms cubic-bezier(0.22, 1, 0.36, 1)",
+                    zIndex: -1,
+                  },
+                  "&:hover::before": {
+                    transform: "translateY(0%)",
+                  },
                   "&:hover": {
-                    borderColor: "#FFFFFF",
-                    backgroundColor: "rgba(255,255,255,0.12)",
+                    borderColor: "transparent",
                   },
                 }}
               >

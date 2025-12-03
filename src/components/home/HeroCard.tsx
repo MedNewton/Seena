@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, Button } from "@mui/material";
 import { AnimatePresence, motion } from "motion/react";
 
 import heroCardBg from "@/assets/images/heroCard3.webp";
@@ -50,9 +50,9 @@ const HeroCard: React.FC<HeroCardProps> = ({
         backgroundSize: "cover",
         backgroundPosition: "center",
         boxShadow: {
-            xs: "0px 18px 45px rgba(15, 23, 42, 0.38)",
-            md: "0px 30px 80px rgba(15, 23, 42, 0.45)",
-          },
+          xs: "0px 18px 45px rgba(15, 23, 42, 0.38)",
+          md: "0px 30px 80px rgba(15, 23, 42, 0.45)",
+        },
       }}
     >
       <Box
@@ -71,11 +71,7 @@ const HeroCard: React.FC<HeroCardProps> = ({
           px: { xs: 2, md: 4 },
         }}
       >
-        <Stack
-          direction="column"
-          spacing={{ xs: 2, md: 3 }}
-          alignItems="center"
-        >
+        <Stack direction="column" spacing={{ xs: 2, md: 3 }} alignItems="center">
           {/* Main hero line */}
           <Stack
             direction="row"
@@ -156,6 +152,61 @@ const HeroCard: React.FC<HeroCardProps> = ({
             Moderns live rewards overdrive. Our body calls it inflammation, our
             mind calls it burnout.
           </Typography>
+
+          {/* CTAs: PHYSICAL / DIGITAL */}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2}
+            sx={{ mt: { xs: 2.5, md: 3.5 } }}
+            justifyContent="center"
+            alignItems="center"
+            pt={2}
+          >
+            {["PHYSICAL", "DIGITAL"].map((label) => (
+              <Button
+                key={label}
+                sx={{
+                  position: "relative",
+                  overflow: "hidden",
+                  borderRadius: 2,
+                  minWidth: { xs: 140, md: 170 }, // same size
+                  px: 0,
+                  py: 1.4,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  letterSpacing: 1,
+                  textTransform: "uppercase",
+                  color: "#FFFFFF",
+                  borderWidth: 1.5,
+                  borderStyle: "solid",
+                  borderColor: "rgba(255,255,255,0.9)",
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                  zIndex: 0,
+                  "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    inset: 0,
+                    backgroundColor: "#F9733C",
+                    borderRadius: 1,
+                    transform: "translateY(100%)",
+                    transformOrigin: "bottom center",
+                    transition:
+                      "transform 260ms cubic-bezier(0.22, 1, 0.36, 1)",
+                    zIndex: -1,
+                  },
+                  "&:hover::before": {
+                    transform: "translateY(0%)",
+                  },
+                  "&:hover": {
+                    borderColor: "transparent",
+                  },
+                }}
+              >
+                {label}
+              </Button>
+            ))}
+          </Stack>
         </Stack>
       </Box>
     </Box>
