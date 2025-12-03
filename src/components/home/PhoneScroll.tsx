@@ -84,7 +84,7 @@ const PhoneScroll: React.FC = () => {
         width: "100%",
         // taller than viewport so the sticky part has room to play
         minHeight: { xs: "220vh", md: "260vh" },
-        py: { xs: 8, md: 10 },
+        pt: { xs: 8, md: 10 },
       }}
     >
       {/* Sticky container (heading + card) */}

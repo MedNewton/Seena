@@ -5,6 +5,8 @@ import HeroCard from "@/components/home/HeroCard";
 import RestoreCard from "@/components/home/RestoreCard";
 import ExploreSection from "@/components/home/ExploreSection";
 import PhoneScroll from "@/components/home/PhoneScroll";
+import Branches from "@/components/home/Branches";
+import SeenaCircles from "@/components/home/SeenaCircles";
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
       <RestoreCard />
       <ExploreSection />
       <PhoneScroll />
+      <Branches />
+      <SeenaCircles />
       <Stack width={"100%"} height={"100vh"}>
 
       </Stack>
