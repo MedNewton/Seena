@@ -5,8 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { AnimatePresence, motion } from "motion/react";
 
-import heroCardBg from "@/assets/images/heroCard2.webp"
-
+import heroCardBg from "@/assets/images/heroCard3.webp";
 
 type HeroWord = "calm" | "control" | "clarity" | undefined;
 
@@ -41,7 +40,7 @@ const HeroCard: React.FC<HeroCardProps> = ({
         mt: 10,
         borderRadius: 6,
         overflow: "hidden",
-        height: { xs: 420, md: "80vh" },
+        height: { xs: 420, md: "82vh" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -50,6 +49,10 @@ const HeroCard: React.FC<HeroCardProps> = ({
         backgroundImage: `url(${backgroundImageUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        boxShadow: {
+            xs: "0px 18px 45px rgba(15, 23, 42, 0.38)",
+            md: "0px 30px 80px rgba(15, 23, 42, 0.45)",
+          },
       }}
     >
       <Box
@@ -61,70 +64,100 @@ const HeroCard: React.FC<HeroCardProps> = ({
         }}
       />
 
-      <Stack
-        direction="row"
-        spacing={{ xs: 1.5, md: 3 }}
-        alignItems="center"
+      <Box
         sx={{
           position: "relative",
           zIndex: 1,
-          fontSize: { xs: 32, md: 64 },
-          fontWeight: 300,
+          px: { xs: 2, md: 4 },
         }}
       >
-        <Typography
-          component="span"
-          sx={{ fontSize: "inherit", fontWeight: "inherit" }}
+        <Stack
+          direction="column"
+          spacing={{ xs: 2, md: 3 }}
+          alignItems="center"
         >
-          Find
-        </Typography>
+          {/* Main hero line */}
+          <Stack
+            direction="row"
+            spacing={{ xs: 1.5, md: 3 }}
+            alignItems="center"
+            sx={{
+              fontSize: { xs: 32, md: 64 },
+              fontWeight: 300,
+            }}
+          >
+            <Typography
+              component="span"
+              sx={{ fontSize: "inherit", fontWeight: "inherit" }}
+            >
+              Find
+            </Typography>
 
-        <Typography
-          component="span"
-          sx={{ fontSize: { xs: 30, md: 56 }, lineHeight: 1 }}
-        >
-          •
-        </Typography>
+            <Typography
+              component="span"
+              sx={{ fontSize: { xs: 30, md: 56 }, lineHeight: 1 }}
+            >
+              •
+            </Typography>
 
-        <Box
-          sx={{
-            minWidth: { xs: 160, md: 220 },
-            display: "inline-flex",
-            justifyContent: "center",
-          }}
-        >
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={currentWord}
-              initial={{ y: -24, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 24, opacity: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                display: "inline-block",
-                fontSize: "inherit",
-                fontWeight: 300,
+            <Box
+              sx={{
+                width: { xs: 160, md: 220 },
+                display: "inline-flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              {currentWord}
-            </motion.span>
-          </AnimatePresence>
-        </Box>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentWord}
+                  initial={{ y: -24, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 24, opacity: 0 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  style={{
+                    display: "inline-block",
+                    fontSize: "inherit",
+                    fontWeight: 300,
+                  }}
+                >
+                  {currentWord}
+                </motion.span>
+              </AnimatePresence>
+            </Box>
 
-        <Typography
-          component="span"
-          sx={{ fontSize: { xs: 30, md: 56 }, lineHeight: 1 }}
-        >
-          •
-        </Typography>
+            <Typography
+              component="span"
+              sx={{ fontSize: { xs: 30, md: 56 }, lineHeight: 1 }}
+            >
+              •
+            </Typography>
 
-        <Typography
-          component="span"
-          sx={{ fontSize: "inherit", fontWeight: "inherit" }}
-        >
-          within
-        </Typography>
-      </Stack>
+            <Typography
+              component="span"
+              sx={{ fontSize: "inherit", fontWeight: "inherit" }}
+            >
+              within
+            </Typography>
+          </Stack>
+
+          {/* Subtitle */}
+          <Typography
+            sx={{
+              mt: { xs: 1, md: 3 },
+              maxWidth: 640,
+              mx: "auto",
+              fontSize: { xs: 14, md: 18 },
+              fontWeight: 300,
+              lineHeight: 1.6,
+              color: "rgba(249, 250, 251, 0.9)",
+            }}
+          >
+            Moderns live rewards overdrive. Our body calls it inflammation, our
+            mind calls it burnout.
+          </Typography>
+        </Stack>
+      </Box>
     </Box>
   );
 };
