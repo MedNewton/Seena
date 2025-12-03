@@ -7,6 +7,7 @@ import ExploreSection from "@/components/home/ExploreSection";
 import PhoneScroll from "@/components/home/PhoneScroll";
 import Branches from "@/components/home/Branches";
 import SeenaCircles from "@/components/home/SeenaCircles";
+import PersonalizedJourney from "@/components/home/PersonalizedJourney";
 
 export default function Home() {
   return (
@@ -17,9 +18,7 @@ export default function Home() {
       <PhoneScroll />
       <Branches />
       <SeenaCircles />
-      <Stack width={"100%"} height={"100vh"}>
-
-      </Stack>
+      <PersonalizedJourney />
     </Stack>
   );
 }
