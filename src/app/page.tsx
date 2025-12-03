@@ -3,12 +3,19 @@ import Link from "next/link";
 
 import HeroCard from "@/components/home/HeroCard";
 import RestoreCard from "@/components/home/RestoreCard";
+import ExploreSection from "@/components/home/ExploreSection";
+import PhoneScroll from "@/components/home/PhoneScroll";
 
 export default function Home() {
   return (
     <Stack width={"100%"} gap={4} pt={4}>
       <HeroCard />
       <RestoreCard />
+      <ExploreSection />
+      <PhoneScroll />
+      <Stack width={"100%"} height={"100vh"}>
+
+      </Stack>
     </Stack>
   );
 }

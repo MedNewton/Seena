@@ -18,14 +18,16 @@ const navItems: NavItem[] = [
   { label: "ABOUT", href: "/about" },
 ];
 
-const SCROLL_THRESHOLD = 8;
+const MAX_SCROLL_FOR_EFFECT = 160; // px until we're "fully frosted"
 
 const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   useEffect(() => {
     const handleScroll = (): void => {
-      setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
+      const y = window.scrollY;
+      const next = Math.min(Math.max(y / MAX_SCROLL_FOR_EFFECT, 0), 1);
+      setScrollProgress(next);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -35,6 +37,13 @@ const Header: React.FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // Interpolate values based on scrollProgress (0 → 1)
+  const blur = 4 + (24 - 4) * scrollProgress; // 4px → 24px
+  const bgAlphaStart = 0.96 + (0.5 - 0.96) * scrollProgress; // 0.96 → 0.50
+  const bgAlphaEnd = 0.92 + (0.55 - 0.92) * scrollProgress; // 0.92 → 0.55
+  const borderAlpha = 0.3 + (0.5 - 0.3) * scrollProgress; // 0.3 → 0.5
+  const shadowAlpha = 0.16 + (0.22 - 0.16) * scrollProgress; // 0.16 → 0.22
 
   return (
     <Box
@@ -50,24 +59,21 @@ const Header: React.FC = () => {
     >
       <Box
         sx={{
+          position: "relative",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           borderRadius: 999,
           px: 3,
           py: 1.5,
-          boxShadow: isScrolled
-            ? "0px 16px 40px rgba(15, 23, 42, 0.24)"
-            : "0px 24px 70px rgba(15, 23, 42, 0.32)",
-          backgroundColor: isScrolled
-            ? "rgba(255, 255, 255, 0.72)"
-            : "#FFFFFF",
-          backdropFilter: isScrolled ? "blur(18px)" : "none",
-          border: isScrolled
-            ? "1px solid rgba(255, 255, 255, 0.8)"
-            : "1px solid rgba(148, 163, 184, 0.16)",
+          overflow: "hidden",
+          boxShadow: `0px 18px 40px rgba(15, 23, 42, ${shadowAlpha})`,
+          background: `linear-gradient(135deg, rgba(255,255,255,${bgAlphaStart}), rgba(255,255,255,${bgAlphaEnd}))`,
+          border: `1px solid rgba(255, 255, 255, ${borderAlpha})`,
+          backdropFilter: `blur(${blur}px)`,
+          WebkitBackdropFilter: `blur(${blur}px)`,
           transition:
-            "background-color 180ms ease-out, box-shadow 180ms ease-out, backdrop-filter 180ms ease-out, border-color 180ms ease-out",
+            "background 180ms ease-out, box-shadow 180ms ease-out, backdrop-filter 180ms ease-out, border-color 180ms ease-out",
         }}
       >
         {/* Left: Logo / Brand */}
@@ -107,7 +113,7 @@ const Header: React.FC = () => {
                 fontWeight: 500,
                 textTransform: "uppercase",
                 color: "#4B5563",
-                pb: 0.5, // space between text and underline
+                pb: 0.5,
                 transition: "color 150ms ease-out",
                 "&::after": {
                   content: '""',
@@ -117,7 +123,7 @@ const Header: React.FC = () => {
                   width: "100%",
                   height: 2,
                   borderRadius: 999,
-                  backgroundColor: "#F9733C", // same orange as button
+                  backgroundColor: "#F9733C",
                   transform: "scaleX(0)",
                   transformOrigin: "left",
                   transition: "transform 180ms ease-out",

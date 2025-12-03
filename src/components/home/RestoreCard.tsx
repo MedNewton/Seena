@@ -21,14 +21,11 @@ const RestoreCard: React.FC = () => {
           xs: "0px 18px 45px rgba(15, 23, 42, 0.35)",
           md: "0px 30px 80px rgba(15, 23, 42, 0.45)",
         },
-        backgroundColor: "#121E2F",
-        backgroundImage: `
-          radial-gradient(circle at 20% 10%, rgba(42, 77, 123, 0.85) 0, rgba(42, 77, 123, 0) 55%),
-          radial-gradient(circle at 80% 85%, rgba(42, 77, 123, 0.8) 0, rgba(42, 77, 123, 0) 55%),
-          radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.18) 0, rgba(255, 255, 255, 0) 55%),
-          linear-gradient(135deg, #121E2F 0%, #121E2F 60%, #0B1524 100%)
-        `,
-        backgroundBlendMode: "screen, normal, screen, normal",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "repeat",
+        backgroundImage:
+          'url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width=%223000%22 height=%221500%22%3E%3Cg filter=%22url(%23a)%22%3E%3Cpath fill=%22%232A4D7B%22 d=%22M-1500-750h6000v3000h-6000z%22%2F%3E%3Cpath d=%22M-549.75-531.75-793.5 1185l253.5 656.25L1499.25 799.5%22 fill=%22%232A4D7B%22%2F%3E%3Cpath d=%22m524.25-438.75-331.5 864 777 1086.75 1392-1239.75M3039.75 429 1242 2151.75l93.75 520.5 2292.75-1866%22 fill=%22%23121E2F%22%2F%3E%3Cpath d=%22m1130.25 535.5-1506 733.5L795 1976.25l468-1066.5%22 fill=%22%232A4D7B%22%2F%3E%3Cpath d=%22M1771.5 1405.5 567 2607l543 858.75 1426.5-511.5%22 fill=%22%23121E2F%22%2F%3E%3Cpath d=%22m1822.5 1393.5-524.25 1446L2232 3315l1050-1263%22 fill=%22%232A4D7B%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3Cfilter id=%22a%22 x=%22-300%22 y=%22-300%22 width=%223600%22 height=%222100%22 filterUnits=%22userSpaceOnUse%22 color-interpolation-filters=%22sRGB%22%3E%3CfeFlood flood-opacity=%220%22 result=%22BackgroundImageFix%22%2F%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22BackgroundImageFix%22 result=%22shape%22%2F%3E%3CfeGaussianBlur stdDeviation=%22300%22 result=%22effect1_foregroundBlur_1_2%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3C%2Fsvg%3E")',
       }}
     >
       <Stack spacing={{ xs: 3, md: 4 }} alignItems="center">
