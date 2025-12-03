@@ -167,9 +167,11 @@ const Branches: React.FC = () => {
   return (
     <Box
       component="section"
+      id="experiences"
       sx={{
         width: "100%",
         py: { xs: 8, md: 4 },
+        scrollMarginTop: "120px",
       }}
     >
       {/* Heading */}

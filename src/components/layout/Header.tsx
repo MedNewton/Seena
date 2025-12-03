@@ -11,14 +11,15 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { label: "APP", href: "/app" },
-  { label: "EXPERIENCES", href: "/experiences" },
-  { label: "CIRCLES", href: "/circles" },
+  { label: "APP", href: "#app" },
+  { label: "EXPERIENCES", href: "#experiences" },
+  { label: "CIRCLES", href: "#circles" },
   { label: "SCREENING", href: "/screening" },
   { label: "ABOUT", href: "/about" },
 ];
 
 const MAX_SCROLL_FOR_EFFECT = 160; // px until we're "fully frosted"
+const HEADER_OFFSET = 96; // px offset so section isn't hidden under header
 
 const Header: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -44,6 +45,31 @@ const Header: React.FC = () => {
   const bgAlphaEnd = 0.92 + (0.55 - 0.92) * scrollProgress; // 0.92 → 0.55
   const borderAlpha = 0.3 + (0.5 - 0.3) * scrollProgress; // 0.3 → 0.5
   const shadowAlpha = 0.16 + (0.22 - 0.16) * scrollProgress; // 0.16 → 0.22
+
+  const handleNavClick =
+    (href: string) => (event: React.MouseEvent<HTMLAnchorElement>): void => {
+      if (!href.startsWith("#")) {
+        // normal navigation for real routes
+        return;
+      }
+
+      event.preventDefault();
+
+      const targetId = href.slice(1);
+      const element = document.getElementById(targetId);
+      if (!element) {
+        return;
+      }
+
+      const elementRect = element.getBoundingClientRect();
+      const elementTop = elementRect.top + window.scrollY;
+      const targetScrollTop = elementTop - HEADER_OFFSET;
+
+      window.scrollTo({
+        top: targetScrollTop,
+        behavior: "smooth",
+      });
+    };
 
   return (
     <Box
@@ -105,6 +131,7 @@ const Header: React.FC = () => {
               key={item.href}
               component={Link}
               href={item.href}
+              onClick={handleNavClick(item.href)}
               sx={{
                 position: "relative",
                 textDecoration: "none",

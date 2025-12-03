@@ -78,6 +78,7 @@ const PhoneScroll: React.FC = () => {
 
   return (
     <Box
+      id="app"
       ref={sectionRef}
       component="section"
       sx={{
@@ -85,6 +86,7 @@ const PhoneScroll: React.FC = () => {
         // taller than viewport so the sticky part has room to play
         minHeight: { xs: "220vh", md: "260vh" },
         pt: { xs: 8, md: 10 },
+        scrollMarginTop: "120px",
       }}
     >
       {/* Sticky container (heading + card) */}

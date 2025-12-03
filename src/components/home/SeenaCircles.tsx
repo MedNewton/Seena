@@ -14,9 +14,11 @@ const SeenaCircles: React.FC<SeenaCirclesProps> = ({
 }) => {
   return (
     <Box
+    id="circles"
       component="section"
       sx={{
         width: "100%",
+        scrollMarginTop: "120px",
       }}
     >
       <Box
